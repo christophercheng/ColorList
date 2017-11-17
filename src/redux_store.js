@@ -1,4 +1,5 @@
 import { createStore, combineReducers } from 'redux';
+import { v4 } from 'uuid';
 import colors from './reducers/colors_reducer';
 import sort from './reducers/sort_reducer';
 import colorData from './ColorData';
@@ -9,7 +10,7 @@ const initialData = {
   sort: C.SORTED_BY_TITLE,
 };
 
-const store = createStore(combineReducers({ colors, sort }), initialData );
+const store = createStore(combineReducers({ colors, sort }), initialData);
 
 const unsubscribeLogLength = store.subscribe(() => console.log('color count:', store.getState().colors.length));
 
@@ -40,6 +41,16 @@ store.dispatch({
   id: '3315e1p5-3abl-0p523-30e4-8001l8yf2412',
 });
 
-unsubscribeLogLength();
+store.dispatch({
+  type: 'ADD_COLOR',
+  id: v4(),
+  title: 'Party Pink',
+  color: '#F142FF',
+  timestamp: new Date().toString(),
+});
 
+console.log('current color count:', store.getState().colors.length);
+console.log('curent state:', store.getState());
+
+unsubscribeLogLength();
 
