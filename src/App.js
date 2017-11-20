@@ -1,7 +1,7 @@
 import { v4 } from 'uuid';
 import React, { Component } from 'react';
 import './App.css';
-import colorData from './ColorData';
+import colorData from './redux/ColorData';
 import AddColorForm from './AddColorForm';
 import ColorList from './ColorList';
 

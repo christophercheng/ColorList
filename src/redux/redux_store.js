@@ -1,19 +1,18 @@
 import { createStore, combineReducers } from 'redux';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 import * as actionCreators from './action_creators';
 import colors from './colors_reducer';
 import sort from './sort_reducer';
-import colorData from './ColorData';
+import initialData from './ColorData';
 import C from './constants';
-
-const initialData = {
-  colors: colorData,
-  sort: C.SORT_BY_TITLE,
-};
 
 const store = createStore(combineReducers({ colors, sort }), initialData);
 
-const unsubscribeLogLength = store.subscribe(() => console.log('color count:', store.getState().colors.length));
+console.log('current color count:', store.getState().colors.length);
+console.log('curent state:', store.getState());
+
+const unsubscribeLogLength = store.subscribe(() =>
+  console.log('state after dispatch: ', store.getState()));
 
 /*
 store.dispatch({
@@ -51,12 +50,9 @@ store.dispatch({
   timestamp: new Date().toString(),
 });
 */
-store.dispatch(actionCreators.rateColor('0175d1f0-a8c6-41bf-8d02-df5734d829a4', 4));
-store.dispatch(actionCreators.sortBy(C.SORT_BY_TITLE));
+// store.dispatch(actionCreators.rateColor('0175d1f0-a8c6-41bf-8d02-df5734d829a4', 4));
+// store.dispatch(actionCreators.sortBy(C.SORT_BY_TITLE));
 store.dispatch(actionCreators.addColor('radBlue', 'blue'));
-
-console.log('current color count:', store.getState().colors.length);
-console.log('curent state:', store.getState());
 
 unsubscribeLogLength();
 
