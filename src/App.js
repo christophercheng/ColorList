@@ -9,12 +9,10 @@ const AppStyle = {
   width: '200px',
 };
 
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      colors: colorData,
-    };
+    this.state = colorData;
   }
 
   onRate = (id, rating) => {
@@ -37,7 +35,7 @@ export class App extends Component {
   };
 
 
-  render() {
+  render = () => {
     const { colors } = this.state;
     return (
       <div className="App" style={AppStyle}>
@@ -45,7 +43,7 @@ export class App extends Component {
         <ColorList colors={colors} onRemove={this.onRemove} onRate={this.onRate} />
       </div>
     );
-  }
+  };
 }
 
 export default App;

@@ -1,18 +1,22 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Star.css';
 
-const Star = ({selected=false,onClickFN=f=>f} ) => {
-	return (
-		<div className={(selected) ? "star selected":"star"}
-			onClick={onClickFN}>
-		</div>
-	)
-}
+const Star = ({ selected, onClickFN }) =>
+  (
+    <button className={(selected) ? 'star selected' : 'star'} onClick={onClickFN} />
+  );
 
-Star.propTypes={
-	selected:PropTypes.bool,
-	onClick:PropTypes.func
-}
 
-export default Star
+Star.defaultProps = {
+  selected: false,
+  onClickFN: f => f,
+};
+
+Star.propTypes = {
+  selected: PropTypes.bool,
+  onClickFN: PropTypes.func,
+};
+
+export default Star;
+
