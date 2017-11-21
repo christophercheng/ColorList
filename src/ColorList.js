@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Color from './Color';
 import { rateColor, removeColor } from './redux/action_creators';
+import sortFunction from './redux/array-helpers';
 
 const ColorList = ({ store }) => {
   const { colors } = store.getState();

@@ -23,3 +23,4 @@ const sortFunction = (sortMethod) => {
 };
 
 export default sortFunction;
+
