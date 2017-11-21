@@ -70,7 +70,6 @@ class Color extends Component {
   }
 
   render() {
-    console.log(this.props);
     const {
       numberStars, rating, color, title, onRemove, onRate,
     } = this.props;

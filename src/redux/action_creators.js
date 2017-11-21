@@ -29,7 +29,7 @@ export const addColor = (title, color) => (
 export const sortBy = (sortMethod) => {
   switch (sortMethod) {
     case C.SORT_BY_DATE:
-      return {*
+      return {
         type: C.SORT_COLORS,
         sortBy: C.SORT_BY_DATE,
       };

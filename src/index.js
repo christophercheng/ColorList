@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import MyApp from './App';
-import registerServiceWorker from './registerServiceWorker';
+// import './index.css';
+import MyApp from './app_w_redux';
+import storeFactory from './redux/store_factory';
+
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 /*
@@ -13,8 +14,14 @@ console.log(`New Color: ${title} | ${color}`)
 
 // ReactDOM.render(<AddColorForm  onNewColorFN={logColorFN}/>, document.getElementById('root'));
 // ReactDOM.render(<StarRating number_stars={10} rating={5}/>, document.getElementById('root'));
+const store = storeFactory();
 
 
-ReactDOM.render(<MyApp />, document.getElementById('root'));
+const render = () =>
+  ReactDOM.render(
+    <MyApp store={store} />,
+    document.getElementById('root'),
+  );
 
-registerServiceWorker();
+store.subscribe(render);
+render();

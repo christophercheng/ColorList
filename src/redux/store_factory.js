@@ -3,7 +3,6 @@ import colors from './colors_reducer';
 import sort from './sort_reducer';
 import initialData from './ColorData';
 
-const localStorage = {};
 
 const logger = store => next => (action) => {
   // console.groupCollapsed('dispatching', action.type);
@@ -26,6 +25,6 @@ const storeFactory = (initialState = initialData) =>
 */
 
 const storeFactory = () =>
-  createStore(combineReducers({ colors, sort }), initialData, applyMiddleware(logger, saver));
+  createStore(combineReducers({ colors, sort }), initialData, applyMiddleware(logger));
 
 export default storeFactory;
