@@ -3,7 +3,7 @@ import React from 'react';
 import { addColor } from './redux/action_creators';
 import './stylesheets/AddColorForm.css';
 
-const AddColorForm = ({ store }) => {
+const AddColorForm = (props, { store }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     store.dispatch(addColor(this.title.value, this.color.value));
@@ -32,6 +32,10 @@ const AddColorForm = ({ store }) => {
 
 AddColorForm.propTypes = {
   store: PropTypes.object, // eslint-disable-line
+};
+
+AddColorForm.contextTypes = {
+  store: PropTypes.object,
 };
 
 export default AddColorForm;

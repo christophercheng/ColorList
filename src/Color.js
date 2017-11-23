@@ -1,27 +1,8 @@
+import FaTrash from 'react-icons/lib/fa/trash-o';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import StarRating from './StarRating';
 import './stylesheets/Color.css';
-import FaTrash from 'react-icons/lib/fa/trash-o';
-
-/*
-// wondering if it's possible to replace props with just the actual prop and not the property name
-const Color = ({number_stars=5, rating=0, title, color,onRemove,onRate}) => {
-  const colorStyle={
-    backgroundColor:color,
-    height:'50px',
-  }
-  return (
-  <section className='color'>
-
-    <h1>{title}</h1>
-    <button onClick={onRemove}>X</button>
-    <div className='color-bar' style={ colorStyle} ></div>
-    <StarRating number_stars={number_stars} rating={rating} onClickFN={onRate}/>
-  </section>
-  )
-}
-*/
 
 class Color extends Component {
   static defaultProps = {
@@ -42,37 +23,11 @@ class Color extends Component {
     onRemove: PropTypes.func,
   }
 
-  /*
-    componentWillMount() {
-      this.colorStyle = {
-        backgroundColor: '#CCC',
-        height: '150px',
-        width: '300px',
-        border: '1px solid black',
-        margin: '25px',
-      };
-    }
+  static contextTypes = { store: PropTypes.object }
 
-
-  shouldComponentUpdate(nextProps) {
-    const { rating } = this.props;
-    return rating !== nextProps.rating;
-  }
-
-  componentWillUpdate(nextProps) {
-    this.title.style.backgroundColor = 'red';
-    this.title.style.color = 'white';
-    this.colorStyle = { ...this.colorStyle, backgroundColor: '#FFF' };
-  }
-
-  componentDidUpdate(prevProps) {
-    const { title, rating } = this.props;
-    const status = (rating > prevProps.rating) ? 'better' : 'worse';
-    console.log(`${title} is getting ${status}`);
-    this.colorStyle = { ...this.colorStyle, backgroundColor: '#CCC' };
-  }
-*/
   render() {
+    const { store } = this.context;
+    console.log('color store:', store);
     const {
       numberStars, rating, color, title, onRemove, onRate,
     } = this.props;
@@ -88,5 +43,6 @@ class Color extends Component {
     );
   }
 }
+
 
 export default Color;

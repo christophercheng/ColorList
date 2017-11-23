@@ -5,7 +5,7 @@ import { rateColor, removeColor } from './redux/action_creators';
 import sortFunction from './redux/array-helpers';
 import './stylesheets/ColorList.css';
 
-const ColorList = ({ store }) => {
+const ColorList = (props, { store }) => {
   const { colors, sort } = store.getState();
   const sortedColors = colors.sort(sortFunction(sort));
   return (
@@ -22,6 +22,10 @@ const ColorList = ({ store }) => {
         ))}
     </div>
   );
+};
+
+ColorList.contextTypes = {
+  store: PropTypes.object,
 };
 
 ColorList.propTypes = {

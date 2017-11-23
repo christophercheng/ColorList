@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import C from './redux/constants';
 import { sortBy } from './redux/action_creators';
 import './stylesheets/menu.css';
@@ -26,7 +27,7 @@ const SortDropDown = ({ store }) => {
   );
 };
 
-const SortMenuList = ({ store }) => (
+const SortMenuList = (props, { store }) => (
   <nav className="menu">
     <h1>Sort Colors</h1>
     {Object.keys(options).map((option, i) => (
@@ -43,6 +44,10 @@ const SortMenuList = ({ store }) => (
     ))}
   </nav>
 );
+
+SortMenuList.contextTypes = {
+  store: PropTypes.object,
+};
 
 export default SortMenuList;
 // export default SortDropDown;
