@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './stylesheets/Star.css';
+import './../../stylesheets/Star.css';
 
 const Star = ({ selected, onClickFN }) =>
   (

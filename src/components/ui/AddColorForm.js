@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { addColor } from './redux/action_creators';
-import './stylesheets/AddColorForm.css';
+import './../../stylesheets/AddColorForm.css';
 
-const AddColorForm = (props, { store }) => {
+const AddColorForm = ({ handleAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
-    store.dispatch(addColor(this.title.value, this.color.value));
+    handleAdd(this.title.value, this.color.value);
     this.title.value = '';
     this.color.value = '#000000';
     this.title.focus();
@@ -31,11 +30,7 @@ const AddColorForm = (props, { store }) => {
 };
 
 AddColorForm.propTypes = {
-  store: PropTypes.object, // eslint-disable-line
-};
-
-AddColorForm.contextTypes = {
-  store: PropTypes.object,
+  handleAdd: PropTypes.func.isRequired,
 };
 
 export default AddColorForm;

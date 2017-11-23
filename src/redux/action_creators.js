@@ -1,5 +1,5 @@
-import C from './constants';
 import { v4 } from 'uuid';
+import C from './constants';
 
 export const removeColor = id => (
   {

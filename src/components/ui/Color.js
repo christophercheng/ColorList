@@ -2,7 +2,7 @@ import FaTrash from 'react-icons/lib/fa/trash-o';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import StarRating from './StarRating';
-import './stylesheets/Color.css';
+import './../../stylesheets/Color.css';
 
 class Color extends Component {
   static defaultProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MyApp from './app';
+import MyApp from './components/app';
 import storeFactory from './redux/store_factory';
 
 const store = storeFactory();

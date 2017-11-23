@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './stylesheets/App.css';
-import AddColorForm from './AddColorForm';
-import ColorList from './ColorList';
-import SortMenu from './sort_menu';
+import './../stylesheets/App.css';
+import { AddColorContainer, MenuContainer, ColorContainer } from './Containers';
 
 class App extends Component {
   getChildContext() {
@@ -20,13 +18,15 @@ class App extends Component {
     this.unsubscribe();
   }
 
-  render = () => (
-    <div className="App">
-      <AddColorForm />
-      <SortMenu />
-      <ColorList />
-    </div>
-  )
+  render() {
+    return (
+      <div className="app">
+        <AddColorContainer />
+        <MenuContainer />
+        <ColorContainer />
+      </div>
+    );
+  }
 }
 
 App.propTypes = {
