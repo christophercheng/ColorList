@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Star.css';
+import './stylesheets/Star.css';
 
 const Star = ({ selected, onClickFN }) =>
   (
-    <button className={(selected) ? 'star selected' : 'star'} onClick={onClickFN} />
+    <div role="button" className={(selected) ? 'star selected' : 'star'} onClick={onClickFN} />
   );
 
 

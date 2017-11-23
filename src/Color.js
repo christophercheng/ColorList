@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import StarRating from './StarRating';
-import PropTypes from 'prop-types';
+import './stylesheets/Color.css';
+import FaTrash from 'react-icons/lib/fa/trash-o';
 
 /*
 // wondering if it's possible to replace props with just the actual prop and not the property name
 const Color = ({number_stars=5, rating=0, title, color,onRemove,onRate}) => {
-  
   const colorStyle={
     backgroundColor:color,
     height:'50px',
@@ -41,15 +42,17 @@ class Color extends Component {
     onRemove: PropTypes.func,
   }
 
-  componentWillMount() {
-    this.colorStyle = {
-      backgroundColor: '#CCC',
-      height: '150px',
-      width: '300px',
-      border: '1px solid black',
-      margin: '25px',
-    };
-  }
+  /*
+    componentWillMount() {
+      this.colorStyle = {
+        backgroundColor: '#CCC',
+        height: '150px',
+        width: '300px',
+        border: '1px solid black',
+        margin: '25px',
+      };
+    }
+
 
   shouldComponentUpdate(nextProps) {
     const { rating } = this.props;
@@ -68,16 +71,19 @@ class Color extends Component {
     console.log(`${title} is getting ${status}`);
     this.colorStyle = { ...this.colorStyle, backgroundColor: '#CCC' };
   }
-
+*/
   render() {
     const {
       numberStars, rating, color, title, onRemove, onRate,
     } = this.props;
     return (
-      <section className="color" style={this.colorStyle}>
-        <h1 ref={(el) => { this.title = el; }}>{title}<button onClick={onRemove}>X</button></h1>
-        <div className="color-bar" style={{ backgroundColor: color, height: 50 }} />
-        <StarRating numberStars={numberStars} rating={rating} color={color} onClickFN={onRate} />
+      <section className="color" style={this.style}>
+        <h1 ref={(el) => { this.title = el; }}>{title}</h1>
+        <button onClick={onRemove}><FaTrash /></button>
+        <div className="color" style={{ backgroundColor: color }} />
+        <div>
+          <StarRating numberStars={numberStars} rating={rating} color={color} onClickFN={onRate} />
+        </div>
       </section>
     );
   }

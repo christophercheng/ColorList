@@ -8,8 +8,14 @@ const StarRatingStyle = {
 
 const StarRating = ({ numberStars, rating, onClickFN }) => (
   <div className="star-rating" style={StarRatingStyle}>
-    {[...Array(numberStars)].map((element, idx) =>
-      <Star key={idx} selected={idx < rating} onClickFN={() => onClickFN(idx + 1)} />)}
+    {[...Array(numberStars)].map((element, idx) => (
+      <Star
+        key={'star'.concat(idx)}
+        selected={idx < rating}
+        onClickFN={() => onClickFN(idx + 1)}
+      />
+    ))
+  }
     <span>{rating}/{numberStars}</span>
   </div>
 );

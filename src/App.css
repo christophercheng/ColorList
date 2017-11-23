@@ -1,52 +1,19 @@
-.App {
-  text-align: center;
-}
+html, body, div#react-container {
+  min-height: 100%; }
 
-.App-logo {
-  animation: App-logo-spin infinite 15s linear;
-  height: 80px;
-}
+h1 {
+  margin: 0;
+  padding: 0; }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  background: linear-gradient(to bottom, white 0%, #e5e5e5 100%); }
+  body div.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%; }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(90deg); }
-  to { transform: rotate(270deg); }
-}
-
-.star {
-cursor: pointer;
-height: 25px;
-width: 25px;
-margin: 2px;
-float: left;
-background-color: grey;
-clip-path: polygon(
-50% 0%,
-63% 38%,
-100% 38%,
-69% 59%,
-82% 100%,
-50% 75%,
-18% 100%,
-31% 59%,
-0% 38%,
-37% 38%
-);
-}
-.star.selected {
-background-color:red;
-}
+input {
+  outline: none; }

@@ -81,4 +81,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# css is now built with sass processor so don't track them
+src/**/*.css
+
 >>>>>>> dc3587972f5a7f5ba6679f39c483d622b8c468a3
