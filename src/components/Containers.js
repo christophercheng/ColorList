@@ -1,57 +1,45 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import SortMenu from './ui/sort_menu';
+import { connect } from 'react-redux';
 import AddColorForm from './ui/AddColorForm';
+import SortMenu from './ui/sort_menu';
 import ColorList from './ui/ColorList';
 import * as ActionCreator from './../redux/action_creators';
 import sortFunction from './../redux/array-helpers';
 
-export const AddColorContainer = (props, { store }) => (
-  <AddColorForm handleAdd={(title, color) =>
-    store.dispatch(ActionCreator.addColor(title, color))}
-  />
-);
+export const AddColorContainer = connect(
+  null,
+  dispatch =>
+    ({
+      onNewColor(title, color) {
+        dispatch(ActionCreator.addColor(title, color));
+      },
+    }),
+)(AddColorForm);
 
-AddColorContainer.contextTypes = {
-  store: PropTypes.object,
-};
+export const MenuContainer = connect(
+  state =>
+    ({
+      sort: state.sort,
+    }),
+  dispatch =>
+    ({
+      onSelect(sortBy) {
+        dispatch(ActionCreator.sortBy(sortBy));
+      },
+    }),
+)(SortMenu);
 
-export const MenuContainer = (props, { store }) => (
-  <SortMenu
-    sort={store.getState().sort}
-    handleSort={sortMethod =>
-      store.dispatch(ActionCreator.sortBy(sortMethod))}
-  />
-);
-
-MenuContainer.contextTypes = {
-  store: PropTypes.object,
-};
-
-export const ColorContainer = (props, { store }) => {
-  const { colors, sort } = store.getState();
-  const sortedColors = colors.sort(sortFunction(sort));
-  return (
-    <ColorList
-      colors={sortedColors}
-      handleRemove={
-        id => store.dispatch(ActionCreator.removeColor(id))
-      }
-      handleRate={
-        (id, rating) => store.dispatch(ActionCreator.rateColor(id, rating))
-      }
-    />
-  );
-};
-
-ColorContainer.contextTypes = {
-  store: PropTypes.object,
-};
-
-/*
-export default {
-  AddColorContainer,
-  MenuContainer,
-  ColorContainer,
-};
-*/
+export const ColorContainer = connect(
+  state =>
+    ({
+      colors: [...state.colors].sort(sortFunction(state.sort)),
+    }),
+  dispatch =>
+    ({
+      onRemove(id) {
+        dispatch(ActionCreator.removeColor(id));
+      },
+      onRate(id, rating) {
+        dispatch(ActionCreator.rateColor(id, rating));
+      },
+    }),
+)(ColorList);

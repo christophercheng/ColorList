@@ -4,10 +4,8 @@ import './../../stylesheets/Star.css';
 
 const Star = ({ selected, onClickFN }) =>
   (
-    <div role="button" className={(selected) ? 'star selected' : 'star'} onClick={onClickFN} />
+    <div role="button" className={(selected) ? 'star selected' : 'star'} onClick={onClickFN} /> //eslint-disable-line
   );
-
-
 Star.defaultProps = {
   selected: false,
   onClickFN: f => f,
