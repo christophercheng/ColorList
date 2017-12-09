@@ -9,7 +9,7 @@ export const AddColorContainer = connect(
   null,
   dispatch =>
     ({
-      onNewColor(title, color) {
+      handleAdd(title, color) {
         dispatch(ActionCreator.addColor(title, color));
       },
     }),
@@ -22,23 +22,23 @@ export const MenuContainer = connect(
     }),
   dispatch =>
     ({
-      onSelect(sortBy) {
+      handleSort(sortBy) {
         dispatch(ActionCreator.sortBy(sortBy));
       },
     }),
 )(SortMenu);
 
-export const ColorContainer = connect(
+export const ColorsContainer = connect(
   state =>
     ({
       colors: [...state.colors].sort(sortFunction(state.sort)),
     }),
   dispatch =>
     ({
-      onRemove(id) {
+      handleRemove(id) {
         dispatch(ActionCreator.removeColor(id));
       },
-      onRate(id, rating) {
+      handleRate(id, rating) {
         dispatch(ActionCreator.rateColor(id, rating));
       },
     }),

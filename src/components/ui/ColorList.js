@@ -3,7 +3,7 @@ import React from 'react';
 import Color from './Color';
 import './../../stylesheets/ColorList.css';
 
-const ColorList = ({ colors, handleRemove, handleRate }) => (
+const ColorList = ({ colors = [], handleRemove = f => f, handleRate = f => f }) => (
   <div className="color-list">
     {(colors.length === 0) ? <p>No Colors Listed. (Add a color)</p> :
       colors.map(el => (

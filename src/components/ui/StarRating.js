@@ -21,7 +21,7 @@ const StarRating = ({ numberStars, rating, onClickFN }) => (
 );
 
 StarRating.defaultProps = {
-  numberStars: 10,
+  numberStars: 5,
   rating: 0,
   onClickFN: f => f,
 };

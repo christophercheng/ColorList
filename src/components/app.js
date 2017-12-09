@@ -1,12 +1,12 @@
 import React from 'react';
 import './../stylesheets/App.css';
-import { AddColorContainer, MenuContainer, ColorContainer } from './Containers';
+import { AddColorContainer, MenuContainer, ColorsContainer } from './Containers';
 
 const App = () => (
   <div className="app">
     <AddColorContainer />
     <MenuContainer />
-    <ColorContainer />
+    <ColorsContainer />
   </div>
 );
 
