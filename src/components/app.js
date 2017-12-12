@@ -1,13 +1,30 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import './../stylesheets/App.css';
-import { AddColorContainer, MenuContainer, ColorsContainer } from './Containers';
+import Menu from './ui/RouterMenu';
+import { AddColorContainer, ColorsContainer, ColorDetailsContainer } from './Containers';
 
 const App = () => (
-  <div className="app">
-    <AddColorContainer />
-    <MenuContainer />
-    <ColorsContainer />
-  </div>
+  <Switch>
+    <Route
+      exact
+      path="/:id"
+      component={ColorDetailsContainer}
+    />
+    <Route
+      path="/"
+      component={() => (
+        <div className="app">
+          <Route component={Menu} />
+          <AddColorContainer />
+          <Switch>
+            <Route exact path="/" component={ColorsContainer} />
+            <Route path="/sort/:sort" component={ColorsContainer} />
+          </Switch>
+        </div>
+      )}
+    />
+  </Switch>
 );
 
 export default App;

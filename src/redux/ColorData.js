@@ -22,7 +22,7 @@ const colorData = {
       timestamp: 'Thu Mar 10 2016 01:11:12 GMT-0800 (PST)',
     },
   ],
-  sort: 'SORT_BY_TITLE',
+  // sort: 'SORT_BY_TITLE',
 };
 
 export default colorData;

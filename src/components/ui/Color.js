@@ -1,6 +1,7 @@
 import FaTrash from 'react-icons/lib/fa/trash-o';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import StarRating from './StarRating';
 import './../../stylesheets/Color.css';
 
@@ -26,16 +27,26 @@ class Color extends Component {
   static contextTypes = { store: PropTypes.object }
 
   render() {
-    const { store } = this.context;
-    console.log('color store:', store);
     const {
-      numberStars, rating, color, title, onRemove, onRate,
+      id, numberStars, rating, color, title, onRemove, onRate, history, //eslint-disable-line
     } = this.props;
     return (
-      <section className="color" style={this.style}>
-        <h1 ref={(el) => { this.title = el; }}>{title}</h1>
+      <section
+        className="color"
+        style={this.style}
+      >
+        <h1
+          ref={(el) => { this.title = el; }}
+          onClick={() => history.push(`/${id}`)}
+        >
+          {title}
+        </h1>
         <button onClick={onRemove}><FaTrash /></button>
-        <div className="color" style={{ backgroundColor: color }} />
+        <div
+          className="color"
+          style={{ backgroundColor: color }}
+          onClick={() => history.push(`/${id}`)}
+        />
         <div>
           <StarRating numberStars={numberStars} rating={rating} color={color} onClickFN={onRate} />
         </div>
@@ -45,4 +56,4 @@ class Color extends Component {
 }
 
 
-export default Color;
+export default withRouter(Color);

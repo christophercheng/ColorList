@@ -1,9 +1,11 @@
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import AddColorForm from './ui/AddColorForm';
-import SortMenu from './ui/sort_menu';
+// mport SortMenu from './ui/sort_menu';
 import ColorList from './ui/ColorList';
+import ColorDetails from './ui/ColorDetails';
 import * as ActionCreator from './../redux/action_creators';
-import sortFunction from './../redux/array-helpers';
+import { sortColors } from './../lib/my-array-helpers';
 
 export const AddColorContainer = connect(
   null,
@@ -15,6 +17,8 @@ export const AddColorContainer = connect(
     }),
 )(AddColorForm);
 
+// no longer needed now that sort is not managed by redux
+/*
 export const MenuContainer = connect(
   state =>
     ({
@@ -27,11 +31,12 @@ export const MenuContainer = connect(
       },
     }),
 )(SortMenu);
+*/
 
 export const ColorsContainer = connect(
-  state =>
+  ({ colors }, { match }) =>
     ({
-      colors: [...state.colors].sort(sortFunction(state.sort)),
+      colors: sortColors(colors, match.params.sort),
     }),
   dispatch =>
     ({
@@ -43,3 +48,12 @@ export const ColorsContainer = connect(
       },
     }),
 )(ColorList);
+
+const filterArrayById = (array, id) => array.filter(item => item.id === id);
+const getFirstArrayItem = array => array[0];
+const findById = compose(getFirstArrayItem, filterArrayById);
+
+export const ColorDetailsContainer = connect(
+  // return an prop id object e.g. {id: #582389235
+  (state, props) => findById(state.colors, props.match.params.id),
+)(ColorDetails);

@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+import { HashRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MyApp from './components/app';
@@ -9,7 +10,9 @@ const store = storeFactory(initialData);
 
 ReactDOM.render(
   <Provider store={store}>
-    <MyApp />
+    <HashRouter>
+      <MyApp />
+    </HashRouter>
   </Provider>,
   document.getElementById('root'),
 );

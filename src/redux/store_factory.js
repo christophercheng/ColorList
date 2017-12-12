@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import colors from './colors_reducer';
-import sort from './sort_reducer';
+// import sort from './sort_reducer';
 import initialData from './ColorData';
 
-
+/*
 const logger = store => next => (action) => {
   console.groupCollapsed('dispatching', action.type);
   console.log('prev state:', store.getState());
@@ -18,6 +18,7 @@ const saver = store => next => (action) => {
   localStorage['redux-store'] = JSON.stringify(store.getState());
   return result;
 };
+*/
 
 /*
 const storeFactory = (initialState = initialData) =>
@@ -25,6 +26,6 @@ const storeFactory = (initialState = initialData) =>
 */
 
 const storeFactory = (optionalData = initialData) =>
-  createStore(combineReducers({ colors, sort }), optionalData, applyMiddleware());
+  createStore(combineReducers({ colors }), optionalData, applyMiddleware());
 
 export default storeFactory;
