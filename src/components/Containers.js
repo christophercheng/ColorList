@@ -55,5 +55,12 @@ const findById = compose(getFirstArrayItem, filterArrayById);
 
 export const ColorDetailsContainer = connect(
   // return an prop id object e.g. {id: #582389235
-  (state, props) => findById(state.colors, props.match.params.id),
+  (state, props) => {
+
+    console.log('props match params id: ', props.match.params.id);
+
+    const colorObject = findById(state.colors, props.match.params.id);
+
+    return colorObject;
+  },
 )(ColorDetails);

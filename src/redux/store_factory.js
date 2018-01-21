@@ -25,7 +25,7 @@ const storeFactory = (initialState = initialData) =>
   applyMiddleware(logger, saver)(createStore)(combineReducers({ colors, sort }), initialState);
 */
 
-const storeFactory = (optionalData = initialData) =>
+const storeFactory = (optionalData = initialData, server = false) =>
   createStore(combineReducers({ colors }), optionalData, applyMiddleware());
 
 export default storeFactory;

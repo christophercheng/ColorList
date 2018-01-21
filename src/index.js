@@ -1,18 +1,18 @@
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { hydrate } from 'react-dom';
 import MyApp from './components/app';
 import storeFactory from './redux/store_factory';
-import initialData from './redux/ColorData';
+//import initialData from './redux/ColorData';
 
-const store = storeFactory(initialData);
+const store = storeFactory(window.__INITIAL_STATE__);
 
-ReactDOM.render(
+hydrate(
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <MyApp />
-    </HashRouter>
+    </BrowserRouter>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('client-root'),
 );
