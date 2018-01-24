@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import colors from './colors_reducer';
 // import sort from './sort_reducer';
 import initialData from './ColorData';
@@ -25,7 +26,8 @@ const storeFactory = (initialState = initialData) =>
   applyMiddleware(logger, saver)(createStore)(combineReducers({ colors, sort }), initialState);
 */
 
-const storeFactory = (optionalData = initialData, server = false) =>
-  createStore(combineReducers({ colors }), optionalData, applyMiddleware());
+const storeFactory = (optionalData = initialData) =>
+  createStore(combineReducers({ colors }), optionalData, applyMiddleware(thunk));
+
 
 export default storeFactory;

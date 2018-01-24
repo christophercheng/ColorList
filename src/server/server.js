@@ -6,12 +6,14 @@ import fs from 'fs';
 import ignoreStyles from 'ignore-styles'; // eslint-disable-line                        
 import path from 'path';
 import express from 'express';
+import bodyParser from 'body-parser';
 import { renderToString } from 'react-dom/server';
-import MyApp from './components/app';
-import storeFactory from './redux/store_factory';
-import initialData from './redux/ColorData';
+import api from './colorlist-api';
+import MyApp from './../components/app';
+import storeFactory from './../redux/store_factory';
+import initialData from './../redux/ColorData';
 
-const staticCSS = fs.readFileSync(path.join(__dirname, '../build/static/css/main.711a70b7.css'));
+const staticCSS = fs.readFileSync(path.join(__dirname, '../../build/static/css/main.711a70b7.css'));
 const store = storeFactory(initialData);
 
 const renderHTML = (url, myStore) => (
@@ -36,13 +38,8 @@ const wrapperHTML = ({ html, state }) =>
     </head>
     <body>
       <div id="client-root"><div>boobs and shit</div>${html}</div>
-      <script>window.__INITIAL_STATE=${JSON.stringify(state)}</script>
-      <script>
-        setTimeout(function(){var script = document.createElement('script');
-        script.src = "/main.d38b4373.js";
-        alert('hey');
-        document.getElementsByTagName('head')[0].appendChild(script);},4000);
-        </script>
+      <script>window.__INITIAL_STATE__=${JSON.stringify(state)}</script>
+      <script src="/main.8db88373.js"></script>
     </body>
   </html>
   `;
@@ -50,13 +47,27 @@ const wrapperHTML = ({ html, state }) =>
 const renderedOutput = compose(wrapperHTML, renderHTML);
 
 
-const render = (req, res) => {
-  console.log('server request:', req.url);
+const respond = (req, res) => {
+  console.log('server request:', req.url, req.method, req.body);
   const url = req.url;
   res.status(200).send(renderedOutput(url, store));
 };
 
+const addStoreToPipeline = (req, res, next) => {
+  req.store = store;
+  next();
+};
+
 express()
-  .use(express.static(path.join(__dirname, '../build/static/js')))
-  .use(render)
+  .use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  })
+  .use(express.static(path.join(__dirname, '../../build/static/js')))
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json()) // note that it used to be just bodyParser but that was deprecated
+  .use(addStoreToPipeline)
+  .use(api)
+  .use(respond)
   .listen(3000, () => console.log('starting up!'));

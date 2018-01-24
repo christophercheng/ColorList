@@ -1,4 +1,4 @@
-import { v4 } from 'uuid';
+import axios from 'axios';
 import C from './constants';
 
 export const removeColor = id => (
@@ -16,6 +16,8 @@ export const rateColor = (id, rating) => (
   }
 );
 
+// non SSR version\
+/*
 export const addColor = (title, color) => (
   {
     type: C.ADD_COLOR,
@@ -25,6 +27,44 @@ export const addColor = (title, color) => (
     timestamp: new Date().toString(),
   }
 );
+*/
+// SSR version
+
+/*
+export const addColor = (title, color) => (dispatch, getState) => {
+  // make call to server api via promise
+  const bodyString = JSON.stringify({ title: 'fuck', color: 'fckthat' });
+  console.log('POSTING: ', bodyString);
+
+  axios.post('/colors', { title, color })
+    .then((res) => {
+      console.log('axios response:', res);
+      dispatch(res.data);
+    })
+    .catch(error => console.error('what the fuck', error));
+};
+
+*/
+
+export const addColor = (title, color) => (dispatch, getState) => {
+  // make call to server api via promise
+  const bodyString = JSON.stringify({ title: 'fuck', color: 'fckthat' });
+  console.log('POSTING: ', bodyString);
+
+  fetch('/colors', {
+    method: 'POST',
+    body: JSON.stringify({ title, color }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
+  })
+    .then(res => res.json())
+    .then((res) => {
+      console.log('axios response:', res);
+      dispatch(res);
+    })
+    .catch(error => console.error('what the fuck', error));
+};
 
 export const sortBy = (sortMethod) => {
   switch (sortMethod) {

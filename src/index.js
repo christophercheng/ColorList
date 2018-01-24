@@ -5,7 +5,6 @@ import { hydrate } from 'react-dom';
 import MyApp from './components/app';
 import storeFactory from './redux/store_factory';
 //import initialData from './redux/ColorData';
-
 const store = storeFactory(window.__INITIAL_STATE__);
 
 hydrate(
