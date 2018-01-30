@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ColorDetails = props => (
+const ColorDetails = (props) => (
   <div
     className="color-details"
     style={{ backgroundColor: props.color }}

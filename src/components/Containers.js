@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import AddColorForm from './ui/AddColorForm';
 // mport SortMenu from './ui/sort_menu';
 import ColorList from './ui/ColorList';
-import ColorDetails from './ui/ColorDetails';
+
 import * as ActionCreator from './../redux/action_creators';
 import { sortColors } from './../lib/my-array-helpers';
 
@@ -49,9 +49,11 @@ export const ColorsContainer = connect(
     }),
 )(ColorList);
 
+/*
 const filterArrayById = (array, id) => array.filter(item => item.id === id);
 const getFirstArrayItem = array => array[0];
 const findById = compose(getFirstArrayItem, filterArrayById);
+
 
 export const ColorDetailsContainer = connect(
   // return an prop id object e.g. {id: #582389235
@@ -63,3 +65,4 @@ export const ColorDetailsContainer = connect(
     return colorObject;
   },
 )(ColorDetails);
+*/
